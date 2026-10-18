@@ -13,6 +13,7 @@ const types = {
   ".txt": "text/plain; charset=utf-8",
   ".xml": "application/xml",
   ".png": "image/png",
+  ".ico": "image/x-icon",
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
   ".svg": "image/svg+xml",

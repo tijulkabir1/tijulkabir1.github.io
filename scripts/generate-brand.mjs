@@ -27,6 +27,26 @@ const artwork = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="63
 </svg>`;
 await writeFile("public/og-image.svg", artwork);
 await sharp(Buffer.from(artwork)).png().toFile("public/og-image.png");
-const icon = await readFile("app/icon.svg");
-await sharp(icon).resize(180, 180).png().toFile("app/apple-icon.png");
-console.log("Generated social card and Apple icon.");
+// Present the original portrait through an SVG viewport; no retouching is applied.
+const portrait = await readFile("public/tijul-kabir.jpeg");
+const icon = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><defs><clipPath id="portrait-frame"><rect width="64" height="64" rx="12"/></clipPath></defs><rect width="64" height="64" rx="12" fill="#202020"/><image x="-120" y="-28" width="256" height="192" href="data:image/jpeg;base64,${portrait.toString("base64")}" clip-path="url(#portrait-frame)"/></svg>`;
+await writeFile("app/icon.svg", icon);
+await sharp(Buffer.from(icon)).resize(180, 180).png().toFile("app/apple-icon.png");
+const sizes = [16, 32, 48, 64];
+const images = await Promise.all(sizes.map((size) => sharp(Buffer.from(icon)).resize(size, size).png().toBuffer()));
+const directory = Buffer.alloc(6 + sizes.length * 16);
+directory.writeUInt16LE(1, 2);
+directory.writeUInt16LE(sizes.length, 4);
+let offset = directory.length;
+images.forEach((png, index) => {
+  const entry = 6 + index * 16;
+  directory[entry] = sizes[index];
+  directory[entry + 1] = sizes[index];
+  directory.writeUInt16LE(1, entry + 4);
+  directory.writeUInt16LE(32, entry + 6);
+  directory.writeUInt32LE(png.length, entry + 8);
+  directory.writeUInt32LE(offset, entry + 12);
+  offset += png.length;
+});
+await writeFile("app/favicon.ico", Buffer.concat([directory, ...images]));
+console.log("Generated social card, portrait SVG, multi-size favicon, and Apple icon.");
