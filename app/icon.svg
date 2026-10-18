@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#0a0a0a"/>
-  <text x="4" y="23" font-family="monospace" font-weight="bold" font-size="18" fill="#00FF41">TK</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="10" fill="#222222"/><text x="7" y="43" font-family="Consolas,monospace" font-weight="700" font-size="32" letter-spacing="-3" fill="#f5f6f2">tk<tspan fill="#d8af73">.</tspan></text></svg>

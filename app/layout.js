@@ -1,18 +1,22 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
+const title = "Tijul Kabir Toha | Security & Systems Engineering";
+const description =
+  "Tijul Kabir Toha, CSE undergraduate at PUST. Selected work in security, reverse engineering, and system design, with national hackathon results and CTF leadership.";
+const profiles = [
+  "https://github.com/tijulkabir",
+  "https://linkedin.com/in/tijulkabir1",
+  "https://youtube.com/@bytefroster",
+  "https://tryhackme.com/p/tijulkabir",
+  "https://codeforces.com/profile/tijulkabir1",
+  "https://www.codechef.com/users/tijulkabir",
+];
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -20,11 +24,10 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": "https://tijulkabir.me/#website",
       url: "https://tijulkabir.me",
-      name: "Tijul Kabir Toha — Portfolio",
-      description:
-        "Portfolio of Tijul Kabir Toha (Froster). Offensive security researcher, CTF player, and competitive programmer.",
+      name: title,
+      description,
+      inLanguage: "en",
       publisher: { "@id": "https://tijulkabir.me/#person" },
-      inLanguage: "en-US",
     },
     {
       "@type": "Person",
@@ -32,146 +35,85 @@ const jsonLd = {
       name: "Tijul Kabir Toha",
       alternateName: "Froster",
       url: "https://tijulkabir.me",
-      image: "https://tijulkabir.me/og-image.png",
-      jobTitle: "Offensive Security Researcher",
-      description:
-        "TryHackMe Top 1% globally, CTF player ranked 16th nationally at EWU National Robofest 2026 (first-ever onsite from PUST), competitive programmer, and builder of open-source security tools including NetForge, FSociety Lab, and Vault 7.",
+      description,
+      sameAs: profiles,
       affiliation: {
         "@type": "CollegeOrUniversity",
         name: "Pabna University of Science & Technology",
-        department: "Computer Science & Engineering",
       },
       knowsAbout: [
-        "Penetration Testing",
+        "Cybersecurity",
         "Capture The Flag",
+        "Software Engineering",
+        "System Design",
         "Reverse Engineering",
         "Competitive Programming",
-        "Systems Programming",
-        "Network Security",
-        "Cryptography",
-        "Web Application Security",
       ],
-      sameAs: [
-        "https://github.com/tijulkabir",
-        "https://linkedin.com/in/tijulkabir1",
-        "https://youtube.com/@bytefroster",
-        "https://tryhackme.com/p/tijulkabir",
-        "https://codeforces.com/profile/tijulkabir1",
-        "https://www.codechef.com/users/tijulkabir",
-      ],
-      nationality: {
-        "@type": "Country",
-        name: "Bangladesh",
-      },
+      nationality: { "@type": "Country", name: "Bangladesh" },
     },
     {
       "@type": "ProfilePage",
-      "@id": "https://tijulkabir.me/#profilepage",
+      "@id": "https://tijulkabir.me/#profile",
       url: "https://tijulkabir.me",
-      name: "Tijul Kabir Toha — Offensive Security Researcher & CTF Player",
+      name: title,
       mainEntity: { "@id": "https://tijulkabir.me/#person" },
-      dateCreated: "2025-01-01",
-      dateModified: "2026-06-04",
-      inLanguage: "en-US",
+      dateModified: "2026-10-19",
+      inLanguage: "en",
     },
   ],
 };
-
 export const metadata = {
   metadataBase: new URL("https://tijulkabir.me"),
-  title: "Tijul Kabir Toha — Offensive Security Researcher & CTF Player",
-  description:
-    "Portfolio of Tijul Kabir Toha (Froster). TryHackMe Top 1% globally, CTF player ranked 16th nationally at EWU National Robofest 2026, builder of NetForge, FSociety Lab, Vault 7, and more. Open to security research and collaboration.",
-  applicationName: "Tijul Kabir Toha — Portfolio",
+  title,
+  description,
+  applicationName: "Tijul Kabir — Portfolio",
+  authors: [{ name: "Tijul Kabir Toha", url: "https://tijulkabir.me" }],
   keywords: [
     "Tijul Kabir Toha",
     "Froster",
     "cybersecurity portfolio",
-    "CTF player Bangladesh",
-    "offensive security",
-    "TryHackMe top 1 percent",
-    "competitive programming",
-    "Codeforces",
+    "CTF",
     "security researcher",
-    "PUST CSE",
+    "PUST",
+    "Bangladesh",
     "NetForge",
-    "penetration testing",
-    "Bangladesh hacker",
   ],
-  authors: [{ name: "Tijul Kabir Toha", url: "https://tijulkabir.me" }],
-  creator: "Tijul Kabir Toha",
-  publisher: "Tijul Kabir Toha",
-  formatDetection: {
-    telephone: false,
-    email: false,
-    address: false,
-  },
-  alternates: {
-    canonical: "https://tijulkabir.me",
-  },
+  alternates: { canonical: "https://tijulkabir.me" },
   manifest: "/manifest.json",
   openGraph: {
-    title: "Tijul Kabir Toha — Offensive Security Researcher & CTF Player",
-    description:
-      "TryHackMe Top 1% globally. CTF player, competitive programmer, and builder of open-source security tools.",
+    title,
+    description,
     url: "https://tijulkabir.me",
     siteName: "Tijul Kabir Toha",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://tijulkabir.me/og-image.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Tijul Kabir Toha — Offensive Security Researcher & CTF Player",
-        type: "image/png",
+        alt: "Tijul Kabir Toha — Student, Builder & CTF Player.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tijul Kabir Toha — Offensive Security Researcher",
-    description:
-      "TryHackMe Top 1% globally. CTF player & security tool builder.",
-    images: [
-      {
-        url: "https://tijulkabir.me/og-image.png",
-        alt: "Tijul Kabir Toha — Offensive Security Researcher & CTF Player",
-      },
-    ],
+    title,
+    description,
+    images: ["/og-image.png"],
   },
-  robots: {
-    index: true,
-    follow: true,
-    "max-image-preview": "large",
-    "max-snippet": -1,
-    "max-video-preview": -1,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: { index: true, follow: true, "max-image-preview": "large" },
+  formatDetection: { telephone: false, address: false },
 };
-
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-    { media: "(prefers-color-scheme: light)", color: "#0a0a0a" },
-  ],
+  themeColor: "#101010",
 };
-
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col noise">
+    <html lang="en" className={inter.variable}>
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

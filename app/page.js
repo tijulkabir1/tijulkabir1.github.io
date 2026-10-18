@@ -1,26 +1,53 @@
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import TechStack from "./components/TechStack";
-import Projects from "./components/Projects";
-import Metrics from "./components/Metrics";
-import Footer from "./components/Footer";
+import CertificateGallery from "./components/CertificateGallery";
+import ContactActions from "./components/ContactActions";
+import Icon from "./components/Icon";
+import { projects, competitionResults, approaches } from "./data/profile";
+
+const external = { target: "_blank", rel: "noopener noreferrer" };
+
+function SectionHeading({ number, label, title, description, children }) {
+  return <div className="section-heading"><div><p className="eyebrow"><span>{number}</span> {label}</p><h2>{title}</h2>{description && <p className="section-description">{description}</p>}</div>{children}</div>;
+}
+
+function EchoArchitecture() {
+  return <div className="architecture" aria-label="Echo architecture: peer devices communicate through BLE mesh transport, with encrypted direct messages and store-and-forward delivery.">
+    <div className="architecture-label"><span>Echo / communication architecture</span><Icon name="layers" /></div>
+    <div className="architecture-devices">{["Device A", "Device B", "Device C"].map((device) => <div key={device}><svg viewBox="0 0 24 30" aria-hidden="true"><rect x="4" y="2" width="16" height="26" rx="3" /><path d="M9 5h6m-4 20h2" /></svg><span>{device}</span></div>)}</div>
+    <div className="architecture-connections" aria-hidden="true"><span /><span /><span /></div>
+    <div className="architecture-transport"><Icon name="layers" /><strong>Bluetooth mesh transport</strong><span>Peer-to-peer · Multi-hop routing</span></div>
+    <div className="architecture-connector" aria-hidden="true" />
+    <div className="architecture-services"><div><Icon name="lock" /><strong>Private messaging</strong><span>Encrypted direct communication</span></div><div><Icon name="file" /><strong>Store & forward</strong><span>Delivery across intermittent links</span></div></div>
+    <p className="architecture-caption">Designed around limited connectivity.</p>
+  </div>;
+}
 
 export default function Home() {
-  return (
-    <main className="relative">
-      <Navbar />
-      <Hero />
-      <div className="gradient-line" />
-      <About />
-      <div className="gradient-line" />
-      <TechStack />
-      <div className="gradient-line" />
-      <Projects />
-      <div className="gradient-line" />
-      <Metrics />
-      <div className="gradient-line" />
-      <Footer />
+  return <>
+    <a className="skip-link" href="#main">Skip to content</a>
+    <Navbar />
+    <main id="main">
+      <section className="hero container" id="home" aria-labelledby="hero-title">
+        <div className="hero-copy"><p className="eyebrow hero-eyebrow">CSE 2-2 <span className="eyebrow-rule" /> PUST · Bangladesh</p><h1 id="hero-title">Tijul Kabir<br /><em>Toha.</em></h1><p className="hero-role">Student. Builder. CTF player.</p><p className="hero-description">I’m a second-year CSE student at PUST, exploring offensive security, reverse engineering, and system design. I build open-source tools, compete in national hackathons and CTFs, and lead PUST_Intruders.</p><div className="hero-actions"><a className="button button-primary" href="#projects">See what I’m building <Icon name="arrowDown" /></a><a className="text-link" href="#contact">Say hello <Icon name="arrowUpRight" /></a></div><div className="hero-disciplines"><span>Offensive security</span><span>Reverse engineering</span><span>System design</span></div></div>
+        <aside className="profile-panel" aria-label="Current studies and interests"><div className="profile-panel-top"><span>profile / current</span><span className="profile-initials" aria-hidden="true">2-2</span></div><h2>A few things I’m into.</h2><dl><div><dt>Studying</dt><dd>CSE, Year 2 · Semester 2<br />Pabna University of Science and Technology</dd></div><div><dt>Building</dt><dd><a href="https://github.com/tijulkabir/echo" {...external}>Echo</a> & <a href="https://github.com/tijulkabir/netforge" {...external}>NetForge</a></dd></div><div><dt>Competing</dt><dd>Team Lead, PUST_Intruders</dd></div><div><dt>Digging into</dt><dd>Reverse engineering & binary exploitation</dd></div></dl><div className="profile-panel-bottom"><span>Bangladesh</span><a href="#about">About me <Icon name="arrowUpRight" /></a></div></aside>
+      </section>
+      <section className="highlights container" aria-label="Selected achievements"><div><strong>1st</strong><span>Engineering score</span><small>Echo · July Hackathon 2026</small></div><div><strong>Top 50</strong><span>National hackathon finalist</span><small>PSTU · 2026</small></div><div><strong>16th</strong><span>National CTF placement</span><small>EWU National Robofest · 2026</small></div><div><strong>300+</strong><span>Codeforces problems solved</span><small>Algorithmic problem-solving in C++</small></div></section>
+
+      <section className="section work-section" id="projects" aria-labelledby="work-heading"><div className="container">
+        <SectionHeading number="01" label="Selected work" title={<span id="work-heading">Things I’ve built.</span>} description="Four projects spanning communication systems, binary analysis, and security tooling."><a className="text-link" href="https://github.com/tijulkabir" {...external}>All repositories <Icon name="arrowUpRight" /></a></SectionHeading>
+        <article className="echo-case"><div className="case-copy"><div className="case-meta"><span>Featured project</span><span>01 / Communication systems</span></div><h3>Echo</h3><p className="case-subtitle">Communication when the network is unavailable.</p><p>An offline Android messenger designed for emergency and disaster-relief scenarios. Bluetooth Low Energy mesh networking connects nearby devices through multi-hop routing.</p><dl className="case-decisions"><div><dt>The challenge</dt><dd>Maintain local communication without dependable internet or cellular infrastructure.</dd></div><div><dt>The approach</dt><dd>Independent encrypted direct messages, media compression, local identity, and store-and-forward delivery.</dd></div><div><dt>The outcome</dt><dd><strong>1st in engineering score · 4th overall</strong> at July National Hackathon 2026, with Team Binary Bandits.</dd></div></dl><div className="tags"><span>Kotlin</span><span>Jetpack Compose</span><span>BLE mesh</span><span>X25519 / AES-256-GCM</span></div><a className="text-link" href="https://github.com/tijulkabir/echo" {...external}>Explore Echo <Icon name="arrowUpRight" /></a><p className="attribution">Core BLE transport builds on <a href="https://github.com/permissionlesstech/bitchat-android" {...external}>bitchat-android</a>. Custom application, messaging, and interface work is documented in the repository.</p></div><EchoArchitecture /></article>
+        <div className="project-index">{projects.map((project) => <article className="project-row" key={project.name}><div className="project-row-identity"><span className="project-number">{project.number}</span><div><p className="eyebrow">{project.discipline}</p><h3>{project.name}</h3></div></div><div className="project-row-copy"><h4>{project.title}</h4><p>{project.description}</p><p className="project-detail">{project.detail}</p><div className="tags">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>{project.credit && <p className="attribution">Built on <a href={project.credit} {...external}>morluto/rea</a>.</p>}</div><a className="project-source" href={project.href} {...external} aria-label={`View ${project.name} source code`}><Icon name="arrowUpRight" /></a></article>)}</div>
+      </div></section>
+
+      <section className="section approach-section" id="approach" aria-labelledby="approach-heading"><div className="container"><SectionHeading number="02" label="Engineering approach" title={<span id="approach-heading">How I approach the work.</span>} description="Habits I’m developing through projects, reverse engineering, and time-limited competitions." /><div className="approach-grid">{approaches.map((item, index) => <article key={item.title}><span className="approach-number">0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p><span className="approach-evidence">{item.evidence}</span></article>)}</div><div className="writing-callout"><div><Icon name="book" /><span>Technical writing</span><p>Challenge analysis, investigation notes, and reproducible solutions.</p></div><a className="text-link" href="https://github.com/tijulkabir/ctf-writeups" {...external}>Read my CTF writeups <Icon name="arrowUpRight" /></a></div></div></section>
+
+      <section className="section container" id="experience" aria-labelledby="experience-heading"><SectionHeading number="03" label="Leadership & competition" title={<span id="experience-heading">Hackathons, CTFs<br /><em>& the learning in between.</em></span>} description="National hackathons and CTFs put technical decisions, collaboration, and delivery under real time constraints." /><div className="experience-grid"><article className="result-card"><div className="result-category"><Icon name="award" /> National hackathon</div><h3>July Hackathon 2026</h3><p className="result-emphasis">1st engineering score<span>4th overall · Crisis Tech</span></p><p>Taking Echo from a 2-1 mobile application project to a national competition through a 72-hour build sprint with Team Binary Bandits.</p><a className="text-link" href="https://github.com/tijulkabir/echo" {...external}>Project & implementation <Icon name="arrowUpRight" /></a></article><article className="result-card"><div className="result-category"><Icon name="layers" /> National hackathon</div><h3>PSTU National Hackathon 2026</h3><p className="result-emphasis">Top 50 finalist<span>Qualified through the preliminaries</span></p><p>Worked with a team to develop a solution and take an idea into the finalist stage of a national hackathon.</p><a className="text-link" href="#credentials">View competition records <Icon name="arrowDown" /></a></article></div><div className="leadership-row"><div className="leadership-rank">16<span>th nationally</span></div><div><p className="eyebrow">EWU National Robofest 2026</p><h3>PUST’s first onsite national CTF team.</h3><p>Placed 16th nationally at EWU National Robofest 2026. I lead PUST_Intruders and focus on reverse engineering and binary exploitation in competition.</p></div></div><details className="results-details"><summary><span>CTF & programming results</span><span>{competitionResults.length} selected results <Icon name="arrowDown" /></span></summary><div className="results-table-wrap"><table><thead><tr><th scope="col">Competition</th><th scope="col">Result</th><th scope="col">Context</th></tr></thead><tbody>{competitionResults.map((item) => <tr key={item.event}><th scope="row">{item.event}</th><td>{item.result}</td><td>{item.detail}</td></tr>)}</tbody></table></div></details><p className="experience-footnote">Additional participation: Phoenix Summit 2026, IEEE PUST TechXplore 2026, Solver Fest 3.0, and TryHackMe’s Love at First Breach CTF.</p></section>
+
+      <CertificateGallery />
+
+      <section className="section about-section" id="about" aria-labelledby="about-heading"><div className="container about-grid"><div><p className="eyebrow"><span>05</span> Background & practice</p><h2 id="about-heading">A bit about me.</h2><p className="about-lead">I’m studying for a B.Sc. in Computer Science and Engineering at Pabna University of Science and Technology, currently in Year 2, Semester 2.</p><p>My work sits at the intersection of offensive security, reverse engineering, and system design. I learn through hands-on development, national competition, and structured technical training.</p><p>Known online as <strong>Froster</strong>. My current focus is building greater depth in architecture, low-level analysis, and dependable software.</p><div className="capability-groups"><div><h3>Languages & platforms</h3><p>C++ · Rust · Python · Kotlin · JavaScript<br />Linux · Android · Node.js · SQLite</p></div><div><h3>Engineering practice</h3><p>System design · BLE networking · Binary analysis<br />Git · CI · Property testing · Docker</p></div></div></div><aside className="practice-panel"><div className="practice-panel-heading"><Icon name="shield" /><h3>Security practice</h3><a href="https://tryhackme.com/p/tijulkabir" {...external} aria-label="View TryHackMe profile"><Icon name="arrowUpRight" /></a></div><div className="practice-metrics"><div><strong>Top 1%</strong><span>TryHackMe global ranking</span></div><div><strong>452 days</strong><span>Highest recorded streak</span></div><div><strong>72</strong><span>Capability score</span></div><div><strong>Sapphire</strong><span>Highest league</span></div></div><p className="practice-milestone">Previously achieved <strong>#1 on Bangladesh’s monthly leaderboard.</strong></p><p className="snapshot-note">Profile snapshot. Visit the platform for current activity.</p><div className="programming-note"><strong>300+ Codeforces problems solved in C++.</strong><span>CodeChef 2-star programmer · Meta Hacker Cup Round 1 qualifier.</span></div><div className="platform-links"><a href="https://codeforces.com/profile/tijulkabir1" {...external}>Codeforces <Icon name="arrowUpRight" /></a><a href="https://www.codechef.com/users/tijulkabir" {...external}>CodeChef <Icon name="arrowUpRight" /></a></div></aside></div></section>
+
+      <section className="contact-section" id="contact" aria-labelledby="contact-heading"><div className="container"><div className="contact-grid"><div><p className="eyebrow">06 / Contact</p><h2 id="contact-heading">Let’s talk.</h2><p>Working on something interesting? I’m happy to talk about projects, security research, CTFs, or opportunities to learn and contribute.</p><ContactActions /></div><div className="contact-links"><a href="https://www.linkedin.com/in/tijulkabir1/" {...external}><span>LinkedIn<small>Professional profile</small></span><Icon name="arrowUpRight" /></a><a href="https://github.com/tijulkabir" {...external}><span>GitHub<small>Projects & source code</small></span><Icon name="arrowUpRight" /></a><a href="https://github.com/tijulkabir/ctf-writeups" {...external}><span>Technical writing<small>CTF analysis & solutions</small></span><Icon name="arrowUpRight" /></a></div></div><footer className="site-footer"><a className="footer-name" href="#home">Tijul Kabir Toha</a><span>© 2026 · Pabna, Bangladesh</span><a href="#home">Back to top ↑</a></footer></div></section>
     </main>
-  );
+  </>;
 }
