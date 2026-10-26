@@ -52,6 +52,11 @@ export const projects = [
 // Retain the supplied 67th-place result in source until its event name is known; omit it from the public table.
 export const competitionResults = [
   {
+    "event": "Intra-Department Cyber Security (CTF) Contest",
+    "result": "Champion",
+    "detail": "Dept. of CSE, PUST."
+  },
+  {
     "event": "EWU National Robofest 2026",
     "result": "16th nationally",
     "detail": "Represented PUST’s first-ever onsite national CTF team."
