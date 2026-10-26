@@ -179,6 +179,7 @@ h1 { font-size: clamp(58px, 6.5vw, 88px); line-height: .99; margin-top: 25px; le
 .result-card > p:not(.result-emphasis) { font-size: 14px; margin-top: 19px; line-height: 1.9; color: #b6b3aa; max-width: 420px; }
 .result-card > a { font-size: 11px; margin-top: 24px; }
 .leadership-row { display: grid; grid-template-columns: 150px 1fr; gap: 36px; padding-block: 35px; margin-top: 20px; align-items: center; }
+#ctf-champion { scroll-margin-top: 110px; }
 .leadership-rank { font: 600 54px/1 var(--serif); color: var(--ink); letter-spacing: -.06em; border-right: 1px solid var(--line); padding-right: 30px; }
 .leadership-rank span { display: block; margin-top: 9px; font: 10px/1.6 var(--font-inter), sans-serif; letter-spacing: 0; color: var(--muted); }
 .leadership-row .eyebrow { font-size: 11px; margin-bottom: 7px; }
